@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Property Ready Service</title>
+    <meta
+      name="description"
+      content="Property Ready Service provides Airbnb cleaning, villa changeovers, photo reports, key holding, laundry help and small repairs across Odemira, Milfontes, Zambujeira, Odeceixe and Aljezur."
+    />
+    <style>
+      :root {
+        --bg: #f4f8f7;
+        --panel: rgba(255, 255, 255, 0.88);
+        --panel-solid: #ffffff;
+        --text: #102225;
+        --muted: #5d7176;
+        --line: #dce7e5;
+        --deep: #102225;
+        --teal: #1f6d72;
+        --teal-soft: #e6f4f2;
+        --green: #6b8f7e;
+        --sand: #f4efe5;
+        --shadow: 0 22px 50px rgba(16, 34, 37, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at 12% 0%, rgba(31, 109, 114, 0.08), transparent 24%),
+          radial-gradient(circle at 92% 12%, rgba(107, 143, 126, 0.08), transparent 22%),
+          linear-gradient(180deg, #fbfcfc 0%, var(--bg) 100%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .wrap {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .hero {
+        min-height: 94vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding: 24px 0 28px;
+        background:
+          linear-gradient(180deg, rgba(9, 20, 22, 0.08), rgba(9, 20, 22, 0.68)),
+          url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=80")
+            center/cover no-repeat;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 18vh;
+        background: linear-gradient(180deg, transparent, var(--bg));
+      }
+
+      .topbar {
+        position: absolute;
+        inset: 22px 0 auto;
+        z-index: 2;
+      }
+
+      .topbar-inner {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: white;
+      }
+
+      .brand-logo {
+        width: 160px;
+        height: 160px;
+        padding: 8px;
+        border-radius: 22px;
+        overflow: visible;
+        background: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+        flex: none;
+      }
+
+      .brand-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand h1 {
+        margin: 0;
+        font-size: 1rem;
+        letter-spacing: 0.01em;
+      }
+
+      .brand small {
+        display: block;
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px;
+      }
+
+      .nav a {
+        color: rgba(255, 255, 255, 0.92);
+        font-size: 0.96rem;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        color: white;
+        padding-top: 140px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(10px);
+        font-size: 0.95rem;
+        margin-bottom: 18px;
+      }
+
+      .hero h2 {
+        margin: 0;
+        max-width: 11ch;
+        font-size: clamp(2.75rem, 6vw, 5.9rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+      }
+
+      .hero p {
+        max-width: 780px;
+        margin: 18px 0 26px;
+        font-size: clamp(1.05rem, 2vw, 1.3rem);
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px 20px;
+        border-radius: 999px;
+        font-weight: 800;
+        transition: transform 0.18s ease, box-shadow 0.18s ease;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.12);
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+
+      .btn-primary {
+        background: white;
+        color: var(--deep);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-badges {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        max-width: 920px;
+      }
+
+      .badge-card {
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        backdrop-filter: blur(10px);
+      }
+
+      .badge-card strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1.02rem;
+      }
+
+      .badge-card span {
+        color: rgba(255, 255, 255, 0.86);
+        font-size: 0.94rem;
+        line-height: 1.45;
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: end;
+        margin-bottom: 28px;
+      }
+
+      .section-head h3 {
+        margin: 0;
+        font-size: clamp(1.8rem, 3vw, 2.9rem);
+        letter-spacing: -0.04em;
+      }
+
+      .section-head p {
+        margin: 0;
+        max-width: 620px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 22px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+      }
+
+      .card h4 {
+        margin: 0 0 10px;
+        font-size: 1.14rem;
+      }
+
+      .card p,
+      .card li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 20px;
+      }
+
+      .feature-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .feature {
+        display: flex;
+        gap: 12px;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .feature:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, var(--teal), var(--green));
+        margin-top: 7px;
+        flex: none;
+      }
+
+      .feature strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1.02rem;
+      }
+
+      .photo-band {
+        display: grid;
+        grid-template-columns: 1.35fr 1fr;
+        gap: 18px;
+      }
+
+      .photo-stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .photo {
+        position: relative;
+        overflow: hidden;
+        border-radius: 28px;
+        min-height: 270px;
+        background: #dde6e4;
+        box-shadow: var(--shadow);
+      }
+
+      .photo.large {
+        min-height: 558px;
+      }
+
+      .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .caption {
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.9);
+        color: var(--text);
+        backdrop-filter: blur(8px);
+      }
+
+      .caption .mini {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin-top: 4px;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tag {
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: var(--teal-soft);
+        color: var(--teal);
+        border: 1px solid rgba(31, 109, 114, 0.08);
+        font-weight: 700;
+      }
+
+      .price-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .price {
+        padding: 24px;
+        border-radius: 24px;
+        background: linear-gradient(180deg, white, #f7fbfa);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .price .amount {
+        margin: 10px 0 12px;
+        font-size: 2rem;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+      }
+
+      .contact {
+        background: linear-gradient(180deg, #102225 0%, #163235 100%);
+        color: white;
+      }
+
+      .contact .section-head p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 18px;
+      }
+
+      .contact-card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 24px;
+      }
+
+      .contact-card input,
+      .contact-card textarea {
+        width: 100%;
+        margin-top: 10px;
+        padding: 14px 16px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.08);
+        color: white;
+        font: inherit;
+      }
+
+      .contact-card textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .contact-card input::placeholder,
+      .contact-card textarea::placeholder {
+        color: rgba(255, 255, 255, 0.58);
+      }
+
+      .footer {
+        padding: 30px 0 46px;
+        text-align: center;
+        color: var(--muted);
+      }
+
+      .fineprint {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+
+      .faq {
+        display: grid;
+        gap: 14px;
+      }
+
+      .faq-item {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .faq-item h4 {
+        margin: 0 0 8px;
+      }
+
+      .how {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .step {
+        background: var(--panel-solid);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 22px;
+        box-shadow: var(--shadow);
+      }
+
+      .step strong {
+        display: block;
+        font-size: 1.05rem;
+        margin: 8px 0 8px;
+      }
+
+      .step .num {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        background: var(--teal-soft);
+        color: var(--teal);
+        font-weight: 800;
+      }
+
+      .sticky-cta {
+        position: fixed;
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        display: none;
+        gap: 10px;
+        z-index: 30;
+      }
+
+      .sticky-cta a {
+        flex: 1;
+        text-align: center;
+      }
+
+      .mobile-only {
+        display: none;
+      }
+
+      @media (max-width: 960px) {
+        .hero {
+          min-height: 92vh;
+        }
+
+        .topbar-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .brand-logo {
+          width: 120px;
+          height: 120px;
+          padding: 7px;
+          border-radius: 18px;
+        }
+
+        .hero-content {
+          padding-top: 150px;
+        }
+
+        .hero-badges,
+        .service-grid,
+        .split,
+        .photo-band,
+        .price-grid,
+        .contact-grid,
+        .how {
+          grid-template-columns: 1fr;
+        }
+
+        .photo.large {
+          min-height: 340px;
+        }
+
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav {
+          justify-content: flex-start;
+        }
+
+        .sticky-cta {
+          display: flex;
+        }
+
+        .mobile-only {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="brand-logo">
+              <img src="assets/property-ready-service-logo.png" alt="Property Ready Service logo" />
+            </div>
+            <div>
+              <h1>Property Ready Service</h1>
+              <small>English-speaking property care for holiday homes</small>
+            </div>
+          </div>
+          <nav class="nav">
+            <a href="#services">Services</a>
+            <a href="#how">How it works</a>
+            <a href="#areas">Areas</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="wrap hero-content">
+        <div class="eyebrow">Reliable changeovers, photo reports, and small repairs</div>
+        <h2>Property Ready, Peace of Mind</h2>
+        <p>
+          Property Ready Service supports villa and Airbnb owners around Odemira, Vila Nova de
+          Milfontes, Zambujeira do Mar, Odeceixe, Aljezur, Porto Covo, and nearby areas. We keep
+          your property guest-ready with clear communication, fast response, and careful attention
+          to detail.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20property%20care" target="_blank" rel="noreferrer">WhatsApp Now</a>
+          <a class="btn btn-secondary" href="#contact">Request a Quote</a>
+        </div>
+        <div class="hero-badges">
+          <div class="badge-card">
+            <strong>English-first communication</strong>
+            <span>Ideal for foreign owners, expats, and property managers.</span>
+          </div>
+          <div class="badge-card">
+            <strong>Photo report after every visit</strong>
+            <span>See the property after cleaning and catch issues early.</span>
+          </div>
+          <div class="badge-card">
+            <strong>One reliable contact</strong>
+            <span>Cleaning, inspections, key holding, and small repairs in one place.</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>A service built for owners who are not always onsite</h3>
+            <p>
+              This is not a general cleaning company. It is a focused property care service for
+              short-term rentals and villas, where reliability and presentation matter.
+            </p>
+          </div>
+
+          <div class="photo-band">
+            <div class="photo large">
+              <img
+                src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80"
+                alt="Bright and clean villa interior"
+              />
+              <div class="caption">
+                <strong>Guest-ready interiors</strong>
+                <div class="mini">Clean spaces, fresh beds, and a polished finish for every stay.</div>
+              </div>
+            </div>
+
+            <div class="photo-stack">
+              <div class="photo">
+                <img
+                  src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1000&q=80"
+                  alt="Tidy modern living room"
+                />
+                <div class="caption">
+                  <strong>Photo updates</strong>
+                  <div class="mini">Simple WhatsApp reports after each visit.</div>
+                </div>
+              </div>
+              <div class="photo">
+                <img
+                  src="https://images.unsplash.com/photo-1560185008-b033106af2b8?auto=format&fit=crop&w=1000&q=80"
+                  alt="Clean bathroom and property details"
+                />
+                <div class="caption">
+                  <strong>Attention to detail</strong>
+                  <div class="mini">Bathrooms, kitchens, and guest touchpoints handled carefully.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>Services</h3>
+            <p>
+              Simple, focused services for Airbnb hosts, villa owners, property managers, and
+              overseas owners who want a dependable local contact.
+            </p>
+          </div>
+          <div class="grid service-grid">
+            <article class="card">
+              <h4>Airbnb Changeover Cleaning</h4>
+              <p>Clean after guest checkout, reset the home, and prepare it for the next arrival.</p>
+            </article>
+            <article class="card">
+              <h4>Photo Report After Every Visit</h4>
+              <p>Receive photos by WhatsApp so you can see the property from anywhere.</p>
+            </article>
+            <article class="card">
+              <h4>Laundry & Bed Change</h4>
+              <p>Fresh beds, towel prep, laundry help, and an organized guest-ready setup.</p>
+            </article>
+            <article class="card">
+              <h4>Small Repairs & Handyman Help</h4>
+              <p>Minor fixes, quick maintenance, and practical support between bookings.</p>
+            </article>
+            <article class="card">
+              <h4>Key Holding</h4>
+              <p>Safe key handling for owners who need access managed locally and reliably.</p>
+            </article>
+            <article class="card">
+              <h4>Property Checks</h4>
+              <p>Regular inspections to catch problems early and keep the home in good shape.</p>
+            </article>
+            <article class="card">
+              <h4>Emergency Visits</h4>
+              <p>Fast response when something urgent comes up and the property needs attention.</p>
+            </article>
+            <article class="card">
+              <h4>Guest Preparation</h4>
+              <p>Simple checkovers and staging so the property feels ready before arrival.</p>
+            </article>
+            <article class="card">
+              <h4>Owner Support</h4>
+              <p>One point of contact for updates, coordination, and local help when needed.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>How it works</h3>
+            <p>Make the process feel easy. Visitors should understand the service in a few seconds.</p>
+          </div>
+          <div class="how">
+            <div class="step">
+              <div class="num">1</div>
+              <strong>Send the property details</strong>
+              <p>Tell us the location, number of bedrooms and bathrooms, and what you need.</p>
+            </div>
+            <div class="step">
+              <div class="num">2</div>
+              <strong>Get a clear quote</strong>
+              <p>We confirm the job, timing, and any extras like laundry, key holding, or repairs.</p>
+            </div>
+            <div class="step">
+              <div class="num">3</div>
+              <strong>We handle the visit</strong>
+              <p>Cleaning, checkovers, photos, and small fixes are handled with clear communication.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap split">
+          <div class="card">
+            <div class="section-head" style="margin-bottom: 18px">
+              <h3>Why owners choose us</h3>
+            </div>
+            <div class="feature-list">
+              <div class="feature">
+                <div class="dot"></div>
+                <div>
+                  <strong>Reliable</strong>
+                  <div class="mini">We show up, do the work properly, and keep communication clear.</div>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="dot"></div>
+                <div>
+                  <strong>Detail-oriented</strong>
+                  <div class="mini">Beds, bathrooms, finishes, and guest presentation are handled carefully.</div>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="dot"></div>
+                <div>
+                  <strong>English-speaking</strong>
+                  <div class="mini">Easy for foreign owners, expats, and property managers to work with.</div>
+                </div>
+              </div>
+              <div class="feature">
+                <div class="dot"></div>
+                <div>
+                  <strong>Photo updates after each visit</strong>
+                  <div class="mini">A simple way to stay informed without needing to be onsite.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-head" style="margin-bottom: 18px">
+              <h3>Portuguese / English support</h3>
+            </div>
+            <p>
+              <strong>English:</strong> Reliable cleaning, property care, and maintenance for
+              short-term rental homes and villas.
+            </p>
+            <p>
+              <strong>Português:</strong> Limpeza de mudança, apoio a propriedades, verificação da
+              casa, pequenas reparações e gestão de chaves.
+            </p>
+            <div class="tag-row" style="margin-top: 16px">
+              <span class="tag">Cleanings / Limpezas</span>
+              <span class="tag">Photo reports / Relatórios</span>
+              <span class="tag">Key holding / Chaves</span>
+              <span class="tag">Small repairs / Reparações</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="areas">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>Areas served</h3>
+            <p>
+              Start locally and stay focused. This is ideal for owners in the Alentejo Coast and
+              nearby holiday rental areas.
+            </p>
+          </div>
+          <div class="grid service-grid">
+            <article class="card"><h4>Odemira</h4></article>
+            <article class="card"><h4>Vila Nova de Milfontes</h4></article>
+            <article class="card"><h4>Zambujeira do Mar</h4></article>
+            <article class="card"><h4>Odeceixe</h4></article>
+            <article class="card"><h4>Aljezur</h4></article>
+            <article class="card"><h4>Porto Covo</h4></article>
+            <article class="card"><h4>Cercal do Alentejo</h4></article>
+            <article class="card"><h4>Nearby Alentejo Coast areas</h4></article>
+            <article class="card"><h4>And more by arrangement</h4></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pricing">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>Simple starting prices</h3>
+            <p>Clear pricing builds trust. Adjust later once you know the market and property size.</p>
+          </div>
+          <div class="grid price-grid">
+            <article class="price">
+              <h4>Apartment changeover</h4>
+              <div class="amount">from €60</div>
+              <p>Ideal for smaller holiday homes that need a full refresh between guests.</p>
+            </article>
+            <article class="price">
+              <h4>Small villa</h4>
+              <div class="amount">from €90</div>
+              <p>For larger spaces with more rooms, more detail, and more turnover work.</p>
+            </article>
+            <article class="price">
+              <h4>Large villa</h4>
+              <div class="amount">custom quote</div>
+              <p>Quoted based on property size, frequency, and included services.</p>
+            </article>
+            <article class="price">
+              <h4>Property check</h4>
+              <div class="amount">from €35</div>
+              <p>Basic inspection with a quick status update and issue reporting.</p>
+            </article>
+            <article class="price">
+              <h4>Emergency visit</h4>
+              <div class="amount">fixed fee</div>
+              <p>A clear call-out rate for urgent visits when something needs attention quickly.</p>
+            </article>
+            <article class="price">
+              <h4>Small repairs</h4>
+              <div class="amount">quoted separately</div>
+              <p>Minor maintenance, quick fixes, and practical repair work as needed.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap split">
+          <div class="card">
+            <div class="section-head" style="margin-bottom: 18px">
+              <h3>About the service</h3>
+            </div>
+            <p>
+              Property Ready Service is a trusted local service for owners who want reliable
+              cleaning, clear communication, and help keeping their homes guest-ready. The focus is
+              on short-term rentals, villa changeovers, and practical support for owners who may not
+              live nearby.
+            </p>
+            <p>
+              The service is designed to be calm, efficient, and easy to trust. One contact for
+              cleaning, inspections, laundry help, key holding, and small repairs.
+            </p>
+          </div>
+          <div class="card">
+            <div class="section-head" style="margin-bottom: 18px">
+              <h3>What clients get</h3>
+            </div>
+            <div class="feature-list">
+              <div class="feature">
+                <div class="dot"></div>
+                <div><strong>Reliable turnaround</strong><div class="mini">Ready for the next guests.</div></div>
+              </div>
+              <div class="feature">
+                <div class="dot"></div>
+                <div><strong>Photo reporting</strong><div class="mini">So you can see each visit.</div></div>
+              </div>
+              <div class="feature">
+                <div class="dot"></div>
+                <div><strong>Clear messaging</strong><div class="mini">Simple WhatsApp communication.</div></div>
+              </div>
+              <div class="feature">
+                <div class="dot"></div>
+                <div><strong>Property care mindset</strong><div class="mini">Not just cleaning, but ownership support.</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>Contact</h3>
+            <p>
+              Add your real WhatsApp number, phone, and email here. Keep the page simple so owners
+              can message you quickly.
+            </p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h4>Request a quote</h4>
+              <input type="text" placeholder="Your name" />
+              <input type="text" placeholder="Property location" />
+              <input type="text" placeholder="Bedrooms / bathrooms" />
+              <textarea placeholder="Tell us what you need: cleaning, laundry, key holding, repairs, or a property check..."></textarea>
+              <div class="actions" style="margin-top: 14px">
+                <a class="btn btn-primary" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote" target="_blank" rel="noreferrer">WhatsApp Now</a>
+                <a class="btn btn-secondary" href="mailto:hello@example.com">Send Email</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <h4>Contact details</h4>
+              <p>
+                <strong>WhatsApp:</strong>
+                <a class="sr-only" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote" aria-label="Message Property Ready Service on WhatsApp">+351 000 000 000</a>
+                <span aria-hidden="true">Call or message us</span>
+              </p>
+              <p>
+                <strong>Phone:</strong>
+                <a class="sr-only" href="tel:+351000000000" aria-label="Call Property Ready Service">+351 000 000 000</a>
+                <span aria-hidden="true">Available on request</span>
+              </p>
+              <p><strong>Email:</strong> hello@example.com</p>
+              <p><strong>Hours:</strong> By appointment / flexible for changeovers</p>
+              <p class="fineprint">
+                Perfect for Airbnb hosts, villa owners, property managers, and expats who want
+                dependable support in English first, with Portuguese available too.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>FAQ</h3>
+            <p>Short answers help people decide faster.</p>
+          </div>
+          <div class="faq">
+            <div class="faq-item">
+              <h4>What areas do you cover?</h4>
+              <p>Odemira, Vila Nova de Milfontes, Zambujeira do Mar, Odeceixe, Aljezur, Porto Covo, Cercal do Alentejo, and nearby areas.</p>
+            </div>
+            <div class="faq-item">
+              <h4>Do you send photos after each visit?</h4>
+              <p>Yes. Photo reports by WhatsApp are included so you can see the property after the work is done.</p>
+            </div>
+            <div class="faq-item">
+              <h4>Can you handle laundry and bed changes?</h4>
+              <p>Yes. Laundry help, fresh bed preparation, and towel setup can all be included.</p>
+            </div>
+            <div class="faq-item">
+              <h4>Do you offer small repairs?</h4>
+              <p>Yes. Small repairs and handyman help are available as a separate quote.</p>
+            </div>
+            <div class="faq-item">
+              <h4>Do you work with holiday homes and Airbnb properties?</h4>
+              <p>Yes. The service is built specifically for short-term rentals, villas, and owner-managed homes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap">
+        <div><strong>Property Ready Service</strong></div>
+        <div class="mini">Airbnb cleaning, villa care, and property support across the Alentejo Coast.</div>
+      </div>
+    </footer>
+
+    <div class="sticky-cta mobile-only">
+      <a class="btn btn-primary" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a class="btn btn-secondary" href="#contact">Quote</a>
+    </div>
+  </body>
+</html>
