@@ -1391,8 +1391,8 @@
           <div class="section-head">
             <h3>Contact</h3>
             <p>
-              For an accurate quote, complete the request form below. It opens an email addressed
-              to Property Ready Service with your calculator selection and property details.
+              For an accurate quote, complete the request form below. It sends your calculator
+              selection and property details through the website.
             </p>
           </div>
           <div class="contact-grid">
@@ -1452,7 +1452,7 @@
                   <textarea id="quote-notes" placeholder="Laundry quantity, guest checkout time, restocking needs, maintenance issues, parking/access notes..."></textarea>
                 </label>
                 <div class="form-actions">
-                  <button class="btn btn-primary form-btn" type="submit">Email Quote Request</button>
+                  <button class="btn btn-primary form-btn" type="submit">Send Quote Request</button>
                   <button class="btn btn-secondary form-btn" type="button" onclick="copyQuoteMessage()">Copy Message</button>
                 </div>
                 <div class="form-status" id="quote-form-status"></div>
@@ -1474,7 +1474,7 @@
               <p><strong>NIF:</strong> 309213754</p>
               <p><strong>Service area:</strong> Odemira, Vila Nova de Milfontes, Zambujeira do Mar, Odeceixe, Aljezur, Porto Covo, Cercal do Alentejo, and nearby areas by arrangement.</p>
               <p><strong>Phone / WhatsApp:</strong> To be added before advertising</p>
-              <p><strong>Email:</strong> <a href="mailto:edvardaspt@gmail.com">edvardaspt@gmail.com</a></p>
+              <p><strong>Email:</strong> edvardaspt@gmail.com</p>
               <p><strong>Hours:</strong> By appointment / flexible for changeovers</p>
               <p class="fineprint">
                 Before running ads, publish the same real phone, email, and business details here,
@@ -1656,11 +1656,36 @@
         var message = buildQuoteMessage();
         output.value = message;
         outputWrap.classList.add('is-visible');
-        status.textContent = 'Opening your email app with the quote request addressed to edvardaspt@gmail.com.';
-        window.location.href = 'mailto:edvardaspt@gmail.com?subject='
-          + encodeURIComponent('Quote request - Property Ready Service')
-          + '&body='
-          + encodeURIComponent(message);
+        status.textContent = 'Sending your quote request...';
+        fetch('/api/quote', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: getFieldValue('quote-name'),
+            contact: getFieldValue('quote-contact'),
+            location: getFieldValue('quote-location'),
+            bedrooms: getFieldValue('quote-bedrooms'),
+            bathrooms: getFieldValue('quote-bathrooms'),
+            preferredDate: getFieldValue('quote-date'),
+            keyAccess: getFieldValue('quote-key-access'),
+            selection: getFieldValue('quote-selection'),
+            notes: getFieldValue('quote-notes'),
+            message: message
+          })
+        }).then(function (response) {
+          return response.json().then(function (data) {
+            return { ok: response.ok, data: data };
+          });
+        }).then(function (result) {
+          if (!result.ok || !result.data || !result.data.ok) {
+            throw new Error((result.data && result.data.error) || 'Could not send automatically.');
+          }
+          status.textContent = 'Quote request sent. We will reply soon.';
+        }).catch(function () {
+          status.textContent = 'Automatic sending is not ready yet. The prepared message is visible below and can be copied.';
+        });
       }
 
       function copyQuoteMessage() {
