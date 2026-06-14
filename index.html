@@ -1258,8 +1258,20 @@
                     <label class="calc-checkbox" id="lbl-deepclean">
                       <input type="checkbox" id="svc-deepclean" value="55" onchange="updateCalc()"> &#10024; Deep Cleaning Upgrade <span style="margin-left:auto;font-size:0.85rem;opacity:0.7">from +&euro;55</span>
                     </label>
+                    <label class="calc-checkbox" id="lbl-patio">
+                      <input type="checkbox" id="svc-patio" value="20" onchange="updateCalc()"> &#129716; Patio / Terrace Tidy <span style="margin-left:auto;font-size:0.85rem;opacity:0.7">from +&euro;20</span>
+                    </label>
+                    <label class="calc-checkbox" id="lbl-kitchen">
+                      <input type="checkbox" id="svc-kitchen" value="15" onchange="updateCalc()"> &#129530; Fridge or Oven Extra <span style="margin-left:auto;font-size:0.85rem;opacity:0.7">from +&euro;15 each</span>
+                    </label>
+                    <label class="calc-checkbox" id="lbl-windows">
+                      <input type="checkbox" id="svc-windows" value="30" onchange="updateCalc()"> &#129695; Interior Windows <span style="margin-left:auto;font-size:0.85rem;opacity:0.7">from +&euro;30</span>
+                    </label>
                     <label class="calc-checkbox" id="lbl-keyhold">
                       <input type="checkbox" id="svc-keyhold" value="15" onchange="updateCalc()"> &#128273; Key Holding <span style="margin-left:auto;font-size:0.85rem;opacity:0.7">+&euro;15/mo</span>
+                    </label>
+                    <label class="calc-checkbox" id="lbl-urgent">
+                      <input type="checkbox" id="svc-urgent" value="60" onchange="updateCalc()"> &#9889; Urgent / Same-day Timing <span style="margin-left:auto;font-size:0.85rem;opacity:0.7">from +&euro;60</span>
                     </label>
                     <label class="calc-checkbox" id="lbl-repairs">
                       <input type="checkbox" id="svc-repairs" value="0" onchange="updateCalc()"> &#128295; Minor Fixes <span style="margin-left:auto;font-size:0.85rem;opacity:0.7">Quoted separately</span>
@@ -1447,6 +1459,7 @@
       function updateCalc() {
         var addons = 0;
         var hasQuotedItem = false;
+        var hasSupplies = false;
         var checkboxes = document.querySelectorAll('.calc-checkboxes input[type="checkbox"]');
         checkboxes.forEach(function (cb) {
           var lbl = cb.closest('.calc-checkbox');
@@ -1455,17 +1468,17 @@
             var val = parseInt(cb.value, 10);
             if (val > 0) { addons += val; }
             if (cb.id === 'svc-repairs') { hasQuotedItem = true; }
+            if (cb.id === 'svc-restock') { hasSupplies = true; }
           } else {
             lbl.classList.remove('selected');
           }
         });
         var total = basePrice + addons;
         var display = document.getElementById('calc-price-display');
-        if (hasQuotedItem) {
-          display.textContent = 'from \u20ac' + total + ' + quoted work';
-        } else {
-          display.textContent = 'from \u20ac' + total;
-        }
+        var suffix = '';
+        if (hasSupplies) { suffix += ' + supplies'; }
+        if (hasQuotedItem) { suffix += ' + quoted work'; }
+        display.textContent = 'from \u20ac' + total + suffix;
         // Animate the number
         display.style.transform = 'scale(1.08)';
         display.style.transition = 'transform 0.15s ease';
