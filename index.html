@@ -1286,9 +1286,9 @@
                 <div class="calc-group">
                   <label class="calc-label">Property Type</label>
                   <div class="calc-options" id="prop-type">
-                    <button class="calc-btn selected" data-value="apartment" data-base="65" onclick="selectProp(this)">&#127968; Apartment<br><small style="font-weight:400;color:inherit">from &euro;65</small></button>
-                    <button class="calc-btn" data-value="small-villa" data-base="95" onclick="selectProp(this)">&#127969; Small Villa<br><small style="font-weight:400;color:inherit">from &euro;95</small></button>
-                    <button class="calc-btn" data-value="large-villa" data-base="150" onclick="selectProp(this)">&#127983; Large Villa<br><small style="font-weight:400;color:inherit">from &euro;150</small></button>
+                    <button class="calc-btn selected" data-value="apartment" data-label="Apartment" data-base="65" onclick="selectProp(this)">&#127968; Apartment<br><small style="font-weight:400;color:inherit">from &euro;65</small></button>
+                    <button class="calc-btn" data-value="small-villa" data-label="Small Villa" data-base="95" onclick="selectProp(this)">&#127969; Small Villa<br><small style="font-weight:400;color:inherit">from &euro;95</small></button>
+                    <button class="calc-btn" data-value="large-villa" data-label="Large Villa" data-base="150" onclick="selectProp(this)">&#127983; Large Villa<br><small style="font-weight:400;color:inherit">from &euro;150</small></button>
                   </div>
                 </div>
                 <div class="calc-group">
@@ -1406,16 +1406,16 @@
                 <div class="form-row">
                   <label>
                     Name
-                    <input id="quote-name" type="text" autocomplete="name" placeholder="Your name" />
+                    <input id="quote-name" type="text" autocomplete="name" placeholder="Your name" required />
                   </label>
                   <label>
                     Preferred contact
-                    <input id="quote-contact" type="text" autocomplete="email" placeholder="Email or phone" />
+                    <input id="quote-contact" type="text" autocomplete="email" placeholder="Email or phone" required />
                   </label>
                 </div>
                 <label>
                   Property location
-                  <input id="quote-location" type="text" placeholder="Town / area / property address" />
+                  <input id="quote-location" type="text" placeholder="Town / area / property address" required />
                 </label>
                 <div class="form-row">
                   <label>
@@ -1597,7 +1597,7 @@
       function getQuoteSelectionSummary() {
         var selectedProperty = document.querySelector('#prop-type .calc-btn.selected');
         var propertyText = selectedProperty
-          ? selectedProperty.textContent.replace(/\s+/g, ' ').trim()
+          ? selectedProperty.dataset.label + ' from \u20ac' + selectedProperty.dataset.base
           : 'Not selected';
         var selectedServices = [];
         document.querySelectorAll('.calc-checkboxes input[type="checkbox"]').forEach(function (cb) {
