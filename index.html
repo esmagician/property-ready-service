@@ -189,7 +189,7 @@
         margin-bottom: 18px;
       }
 
-      .hero h2 {
+      .hero h1 {
         margin: 0;
         max-width: 11ch;
         font-family: var(--font-heading);
@@ -541,6 +541,60 @@
         color: var(--muted);
       }
 
+      .legal-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .legal-card {
+        background: var(--panel-solid);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .legal-card h4 {
+        margin: 0 0 12px;
+        font-family: var(--font-heading);
+        font-size: 1.05rem;
+      }
+
+      .legal-card p,
+      .legal-card li {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .legal-card ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .trust-note {
+        margin-top: 18px;
+        padding: 18px 20px;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: var(--teal-soft);
+        color: var(--deep);
+        line-height: 1.7;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .footer-links a {
+        color: var(--teal);
+        font-weight: 700;
+      }
+
       .fineprint {
         color: rgba(255, 255, 255, 0.72);
         font-size: 0.92rem;
@@ -806,6 +860,7 @@
         .photo-band,
         .price-grid,
         .contact-grid,
+        .legal-grid,
         .how {
           grid-template-columns: 1fr;
         }
@@ -844,13 +899,14 @@
             <a href="#services">Services</a>
             <a href="#how">How it works</a>
             <a href="#areas">Areas</a>
+            <a href="#legal">Legal</a>
             <a href="#contact">Contact</a>
           </nav>
         </div>
       </div>
 
       <div class="wrap hero-content">
-        <h2>Property Ready, Peace of Mind</h2>
+        <h1>Property Ready, Peace of Mind</h1>
         <p>
           Property Ready Service supports villa and Airbnb owners around Odemira, Vila Nova de
           Milfontes, Zambujeira do Mar, Odeceixe, Aljezur, Porto Covo, and nearby areas. We keep
@@ -858,7 +914,7 @@
           to detail.
         </p>
         <div class="actions">
-          <a class="btn btn-primary" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote%20for%20property%20care" target="_blank" rel="noreferrer">WhatsApp Now</a>
+          <a class="btn btn-primary" href="#contact">Request Contact Details</a>
           <a class="btn btn-secondary" href="#contact">Request a Quote</a>
         </div>
         <div class="hero-badges">
@@ -1099,7 +1155,7 @@
         <div class="wrap">
           <div class="section-head">
             <h3>Simple starting prices</h3>
-            <p>Clear pricing builds trust. Adjust later once you know the market and property size.</p>
+            <p>Starting prices are shown as a guide. Final quotes depend on the property, timing, condition, distance, laundry, and requested extras.</p>
           </div>
           <div class="grid price-grid">
             <article class="price">
@@ -1176,8 +1232,8 @@
               <div class="calc-result-box">
                 <h4>Your Estimated Price</h4>
                 <div class="calc-price" id="calc-price-display">from &euro;60</div>
-                <p class="calc-note">This is a starting guide. Final price depends on property size, condition, and frequency. Contact us for an accurate quote.</p>
-                <a class="calc-cta-btn" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote" target="_blank" rel="noreferrer">&#128242; Get Exact Quote on WhatsApp</a>
+                <p class="calc-note">This is a non-binding estimate. Final price depends on property size, condition, distance, timing, frequency, taxes, and agreed extras.</p>
+                <a class="calc-cta-btn" href="#contact">Request Exact Quote</a>
               </div>
             </div>
           </div>
@@ -1234,39 +1290,35 @@
           <div class="section-head">
             <h3>Contact</h3>
             <p>
-              Add your real WhatsApp number, phone, and email here. Keep the page simple so owners
-              can message you quickly.
+              For an accurate quote, prepare the details below and contact Property Ready Service
+              through the confirmed phone, WhatsApp, or email channel.
             </p>
           </div>
           <div class="contact-grid">
             <div class="contact-card">
-              <h4>Request a quote</h4>
-              <input type="text" placeholder="Your name" />
-              <input type="text" placeholder="Property location" />
-              <input type="text" placeholder="Bedrooms / bathrooms" />
-              <textarea placeholder="Tell us what you need: cleaning, laundry, key holding, repairs, or a property check..."></textarea>
-              <div class="actions" style="margin-top: 14px">
-                <a class="btn btn-primary" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote" target="_blank" rel="noreferrer">WhatsApp Now</a>
-                <a class="btn btn-secondary" href="mailto:hello@example.com">Send Email</a>
-              </div>
+              <h4>Quote checklist</h4>
+              <p class="fineprint">
+                Please include the property location, number of bedrooms and bathrooms, preferred
+                date, required services, laundry needs, key access details, and any maintenance
+                issues you already know about.
+              </p>
+              <p class="fineprint">
+                Personal details are used only to respond to your request, prepare a quote, arrange
+                agreed services, and keep legally required business records.
+              </p>
             </div>
             <div class="contact-card">
               <h4>Contact details</h4>
-              <p>
-                <strong>WhatsApp:</strong>
-                <a class="sr-only" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote" aria-label="Message Property Ready Service on WhatsApp">+351 000 000 000</a>
-                <span aria-hidden="true">Call or message us</span>
-              </p>
-              <p>
-                <strong>Phone:</strong>
-                <a class="sr-only" href="tel:+351000000000" aria-label="Call Property Ready Service">+351 000 000 000</a>
-                <span aria-hidden="true">Available on request</span>
-              </p>
-              <p><strong>Email:</strong> hello@example.com</p>
+              <p><strong>Business:</strong> Property Ready Service</p>
+              <p><strong>NIF:</strong> 309213754</p>
+              <p><strong>Service area:</strong> Odemira, Vila Nova de Milfontes, Zambujeira do Mar, Odeceixe, Aljezur, Porto Covo, Cercal do Alentejo, and nearby areas by arrangement.</p>
+              <p><strong>Phone / WhatsApp:</strong> To be added before advertising</p>
+              <p><strong>Email:</strong> To be added before advertising</p>
               <p><strong>Hours:</strong> By appointment / flexible for changeovers</p>
               <p class="fineprint">
-                Perfect for Airbnb hosts, villa owners, property managers, and expats who want
-                dependable support in English first, with Portuguese available too.
+                Before running ads, publish the same real phone, email, and business details here,
+                in Google Ads, and in any Google Business Profile to keep identity information
+                consistent.
               </p>
             </div>
           </div>
@@ -1303,17 +1355,99 @@
           </div>
         </div>
       </section>
+
+      <section class="section" id="legal">
+        <div class="wrap">
+          <div class="section-head">
+            <h3>Legal and privacy information</h3>
+            <p>Clear business information and simple policies for property owners and advertising compliance.</p>
+          </div>
+          <div class="legal-grid">
+            <article class="legal-card" id="business">
+              <h4>Business information</h4>
+              <p><strong>Business name:</strong> Property Ready Service</p>
+              <p><strong>NIF:</strong> 309213754</p>
+              <p><strong>Services:</strong> property changeover cleaning, photo reports, laundry and bed change support, key holding, property checks, emergency visits, and small repairs by separate quote.</p>
+              <p><strong>Service area:</strong> Alentejo Coast and nearby areas listed on this page, subject to availability.</p>
+            </article>
+            <article class="legal-card" id="terms">
+              <h4>Service terms</h4>
+              <ul>
+                <li>All prices shown are starting estimates, not final binding quotes.</li>
+                <li>Final price depends on property size, condition, location, timing, frequency, laundry, taxes, and agreed extras.</li>
+                <li>Small repairs are limited to minor maintenance and are quoted separately before work begins.</li>
+                <li>Services are provided only where lawful, safe, and agreed in advance with the property owner or manager.</li>
+              </ul>
+            </article>
+            <article class="legal-card" id="privacy">
+              <h4>Privacy policy</h4>
+              <p>
+                Personal information such as name, phone number, email, property location, and
+                booking details is used to respond to enquiries, prepare quotes, provide agreed
+                services, communicate with owners, and keep legally required business records.
+              </p>
+              <p>
+                Personal data is not sold. It may be shared only with service providers or helpers
+                when needed to complete an agreed job, comply with legal duties, or protect legal
+                rights.
+              </p>
+            </article>
+            <article class="legal-card" id="cookies">
+              <h4>Cookie policy</h4>
+              <p>
+                This website is intended to work without non-essential tracking cookies. If analytics,
+                Google Ads conversion tracking, remarketing, or similar tools are added later, visitors
+                should be given clear information and any required consent before non-essential cookies
+                or tracking technologies are used.
+              </p>
+            </article>
+            <article class="legal-card" id="complaints">
+              <h4>Questions and complaints</h4>
+              <p>
+                For questions about services, quotes, privacy, or a completed job, contact Property
+                Ready Service using the confirmed contact details published on this site.
+              </p>
+              <p>
+                Customers in Portugal may also contact the relevant consumer or data protection
+                authority where applicable.
+              </p>
+            </article>
+            <article class="legal-card" id="ads-readiness">
+              <h4>Before advertising</h4>
+              <ul>
+                <li>Add a real phone or WhatsApp number.</li>
+                <li>Add a real business email address.</li>
+                <li>Keep the same business name and NIF across the website, Google Ads, and any Google Business Profile.</li>
+                <li>Add any required licence, insurance, or registration details if they apply to the services offered.</li>
+              </ul>
+            </article>
+          </div>
+          <div class="trust-note">
+            This page is designed to be transparent, but it is not legal advice. Local tax, consumer,
+            licensing, insurance, employment, and privacy obligations should be confirmed for the
+            exact way the service is operated in Portugal.
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
       <div class="wrap">
         <div><strong>Property Ready Service</strong></div>
+        <div class="mini">NIF 309213754</div>
         <div class="mini">Airbnb cleaning, villa care, and property support across the Alentejo Coast.</div>
+        <div class="footer-links">
+          <a href="#business">Business information</a>
+          <a href="#terms">Terms</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#cookies">Cookies</a>
+          <a href="#contact">Contact</a>
+        </div>
       </div>
     </footer>
 
     <div class="sticky-cta mobile-only">
-      <a class="btn btn-primary" href="https://wa.me/351000000000?text=Hello%2C%20I%20would%20like%20a%20quote" target="_blank" rel="noreferrer">WhatsApp</a>
+      <a class="btn btn-primary" href="#contact">Contact</a>
       <a class="btn btn-secondary" href="#contact">Quote</a>
     </div>
     <script>
