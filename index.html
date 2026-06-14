@@ -514,7 +514,8 @@
       }
 
       .contact-card input,
-      .contact-card textarea {
+      .contact-card textarea,
+      .contact-card select {
         width: 100%;
         margin-top: 10px;
         padding: 14px 16px;
@@ -525,6 +526,18 @@
         font: inherit;
       }
 
+      .contact-card label {
+        display: block;
+        margin-top: 14px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.92rem;
+        font-weight: 700;
+      }
+
+      .contact-card select option {
+        color: var(--text);
+      }
+
       .contact-card textarea {
         min-height: 130px;
         resize: vertical;
@@ -533,6 +546,40 @@
       .contact-card input::placeholder,
       .contact-card textarea::placeholder {
         color: rgba(255, 255, 255, 0.58);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .form-btn {
+        border: 0;
+        cursor: pointer;
+      }
+
+      .quote-output {
+        display: none;
+        margin-top: 16px;
+      }
+
+      .quote-output.is-visible {
+        display: block;
+      }
+
+      .form-status {
+        min-height: 20px;
+        margin: 10px 0 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.9rem;
       }
 
       .footer {
@@ -861,6 +908,7 @@
         .price-grid,
         .contact-grid,
         .legal-grid,
+        .form-row,
         .how {
           grid-template-columns: 1fr;
         }
@@ -1286,7 +1334,7 @@
                 <h4>Your Estimated Price</h4>
                 <div class="calc-price" id="calc-price-display">from &euro;65</div>
                 <p class="calc-note">This is a non-binding estimate. Final price depends on property size, condition, distance, timing, frequency, taxes, and agreed extras.</p>
-                <a class="calc-cta-btn" href="#contact">Request Confirmed Quote</a>
+                <a class="calc-cta-btn" href="#contact" onclick="syncQuoteForm()">Request Confirmed Quote</a>
               </div>
             </div>
           </div>
@@ -1343,18 +1391,78 @@
           <div class="section-head">
             <h3>Contact</h3>
             <p>
-              For an accurate quote, prepare the details below. Real phone, WhatsApp, and email
-              details should be published here before advertising starts.
+              For an accurate quote, complete the request form below. It opens an email addressed
+              to Property Ready Service with your calculator selection and property details.
             </p>
           </div>
           <div class="contact-grid">
             <div class="contact-card">
-              <h4>Quote checklist</h4>
+              <h4>Quote request form</h4>
               <p class="fineprint">
-                Please include the property location, number of bedrooms and bathrooms, preferred
-                date, required services, laundry needs, key access details, and any maintenance
-                issues you already know about.
+                Fill in the details below. Your calculator choices are copied into the request
+                automatically so the quote can be confirmed faster.
               </p>
+              <form id="quote-request-form" onsubmit="handleQuoteFormSubmit(event)">
+                <div class="form-row">
+                  <label>
+                    Name
+                    <input id="quote-name" type="text" autocomplete="name" placeholder="Your name" />
+                  </label>
+                  <label>
+                    Preferred contact
+                    <input id="quote-contact" type="text" autocomplete="email" placeholder="Email or phone" />
+                  </label>
+                </div>
+                <label>
+                  Property location
+                  <input id="quote-location" type="text" placeholder="Town / area / property address" />
+                </label>
+                <div class="form-row">
+                  <label>
+                    Bedrooms
+                    <input id="quote-bedrooms" type="number" min="0" inputmode="numeric" placeholder="2" />
+                  </label>
+                  <label>
+                    Bathrooms
+                    <input id="quote-bathrooms" type="number" min="0" inputmode="numeric" placeholder="1" />
+                  </label>
+                </div>
+                <div class="form-row">
+                  <label>
+                    Preferred date
+                    <input id="quote-date" type="date" />
+                  </label>
+                  <label>
+                    Key access
+                    <select id="quote-key-access">
+                      <option value="">Select one</option>
+                      <option>Owner provides access</option>
+                      <option>Key box</option>
+                      <option>Key holding needed</option>
+                      <option>To be arranged</option>
+                    </select>
+                  </label>
+                </div>
+                <label>
+                  Calculator selection
+                  <textarea id="quote-selection" readonly></textarea>
+                </label>
+                <label>
+                  Extra notes
+                  <textarea id="quote-notes" placeholder="Laundry quantity, guest checkout time, restocking needs, maintenance issues, parking/access notes..."></textarea>
+                </label>
+                <div class="form-actions">
+                  <button class="btn btn-primary form-btn" type="submit">Email Quote Request</button>
+                  <button class="btn btn-secondary form-btn" type="button" onclick="copyQuoteMessage()">Copy Message</button>
+                </div>
+                <div class="form-status" id="quote-form-status"></div>
+                <div class="quote-output" id="quote-output-wrap">
+                  <label>
+                    Prepared message
+                    <textarea id="quote-output" readonly></textarea>
+                  </label>
+                </div>
+              </form>
               <p class="fineprint">
                 Personal details are used only to respond to your request, prepare a quote, arrange
                 agreed services, and keep legally required business records.
@@ -1366,7 +1474,7 @@
               <p><strong>NIF:</strong> 309213754</p>
               <p><strong>Service area:</strong> Odemira, Vila Nova de Milfontes, Zambujeira do Mar, Odeceixe, Aljezur, Porto Covo, Cercal do Alentejo, and nearby areas by arrangement.</p>
               <p><strong>Phone / WhatsApp:</strong> To be added before advertising</p>
-              <p><strong>Email:</strong> To be added before advertising</p>
+              <p><strong>Email:</strong> <a href="mailto:edvardaspt@gmail.com">edvardaspt@gmail.com</a></p>
               <p><strong>Hours:</strong> By appointment / flexible for changeovers</p>
               <p class="fineprint">
                 Before running ads, publish the same real phone, email, and business details here,
@@ -1483,7 +1591,101 @@
         display.style.transform = 'scale(1.08)';
         display.style.transition = 'transform 0.15s ease';
         setTimeout(function () { display.style.transform = 'scale(1)'; }, 150);
+        syncQuoteForm();
       }
+
+      function getQuoteSelectionSummary() {
+        var selectedProperty = document.querySelector('#prop-type .calc-btn.selected');
+        var propertyText = selectedProperty
+          ? selectedProperty.textContent.replace(/\s+/g, ' ').trim()
+          : 'Not selected';
+        var selectedServices = [];
+        document.querySelectorAll('.calc-checkboxes input[type="checkbox"]').forEach(function (cb) {
+          if (cb.checked) {
+            selectedServices.push(cb.closest('.calc-checkbox').textContent.replace(/\s+/g, ' ').trim());
+          }
+        });
+        return {
+          property: propertyText,
+          services: selectedServices.length ? selectedServices : ['No add-ons selected'],
+          price: document.getElementById('calc-price-display').textContent.trim()
+        };
+      }
+
+      function syncQuoteForm() {
+        var field = document.getElementById('quote-selection');
+        if (!field) return;
+        var summary = getQuoteSelectionSummary();
+        field.value = [
+          'Property type: ' + summary.property,
+          'Selected services: ' + summary.services.join(', '),
+          'Estimated guide price: ' + summary.price
+        ].join('\n');
+      }
+
+      function getFieldValue(id) {
+        var field = document.getElementById(id);
+        return field && field.value ? field.value.trim() : '';
+      }
+
+      function buildQuoteMessage() {
+        syncQuoteForm();
+        return [
+          'Quote request - Property Ready Service',
+          '',
+          'Name: ' + (getFieldValue('quote-name') || 'Not provided'),
+          'Preferred contact: ' + (getFieldValue('quote-contact') || 'Not provided'),
+          'Property location: ' + (getFieldValue('quote-location') || 'Not provided'),
+          'Bedrooms: ' + (getFieldValue('quote-bedrooms') || 'Not provided'),
+          'Bathrooms: ' + (getFieldValue('quote-bathrooms') || 'Not provided'),
+          'Preferred date: ' + (getFieldValue('quote-date') || 'Not provided'),
+          'Key access: ' + (getFieldValue('quote-key-access') || 'Not provided'),
+          '',
+          getFieldValue('quote-selection'),
+          '',
+          'Extra notes:',
+          getFieldValue('quote-notes') || 'None provided'
+        ].join('\n');
+      }
+
+      function handleQuoteFormSubmit(event) {
+        event.preventDefault();
+        var output = document.getElementById('quote-output');
+        var outputWrap = document.getElementById('quote-output-wrap');
+        var status = document.getElementById('quote-form-status');
+        var message = buildQuoteMessage();
+        output.value = message;
+        outputWrap.classList.add('is-visible');
+        status.textContent = 'Opening your email app with the quote request addressed to edvardaspt@gmail.com.';
+        window.location.href = 'mailto:edvardaspt@gmail.com?subject='
+          + encodeURIComponent('Quote request - Property Ready Service')
+          + '&body='
+          + encodeURIComponent(message);
+      }
+
+      function copyQuoteMessage() {
+        var output = document.getElementById('quote-output');
+        var status = document.getElementById('quote-form-status');
+        if (!output.value) {
+          output.value = buildQuoteMessage();
+          document.getElementById('quote-output-wrap').classList.add('is-visible');
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(output.value).then(function () {
+            status.textContent = 'Quote message copied.';
+          }).catch(function () {
+            output.select();
+            document.execCommand('copy');
+            status.textContent = 'Quote message copied.';
+          });
+        } else {
+          output.select();
+          document.execCommand('copy');
+          status.textContent = 'Quote message copied.';
+        }
+      }
+
+      syncQuoteForm();
     </script>
   </body>
 </html>
