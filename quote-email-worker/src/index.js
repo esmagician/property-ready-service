@@ -18,6 +18,15 @@ function normalizeText(value) {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+function escapeHtml(value) {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function buildEmailBody(payload) {
   return [
     'Quote request - Property Ready Service',
@@ -64,6 +73,11 @@ export default {
     const name = normalizeText(payload.name);
     const contact = normalizeText(payload.contact);
     const location = normalizeText(payload.location);
+
+    if (normalizeText(payload.website)) {
+      return jsonResponse({ ok: true });
+    }
+
     if (!name || !contact || !location) {
       return jsonResponse({ ok: false, error: 'Name, contact, and property location are required.' }, 400);
     }
@@ -90,7 +104,7 @@ export default {
         from: { email: SENDER_EMAIL, name: SENDER_NAME },
         subject: `Quote request from ${name}`,
         text: body,
-        html: body.replace(/\n/g, '<br>')
+        html: escapeHtml(body).replace(/\n/g, '<br>')
       });
 
       return jsonResponse({ ok: true });
