@@ -6,8 +6,7 @@
   "send_email": [
     {
       "name": "EMAIL",
-      "allowed_destination_addresses": ["edvardaspt@gmail.com"],
-      "remote": true
+      "destination_address": "edvardaspt@gmail.com"
     }
   ]
 }
