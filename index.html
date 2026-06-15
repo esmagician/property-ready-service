@@ -34,6 +34,7 @@
             "url": "https://property-ready-service.pages.dev/",
             "image": "https://property-ready-service.pages.dev/assets/property-ready-service-logo.png",
             "email": "mailto:edvardaspt@gmail.com",
+            "telephone": "+447912758192",
             "taxID": "NIF 309213754",
             "priceRange": "€€",
             "description": "Airbnb cleaning, villa changeovers, photo reports, laundry, key holding, restocking, and property checks across the Alentejo Coast.",
@@ -415,6 +416,10 @@
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
+      .service-grid.compact {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .card {
         background: var(--panel);
         border: 1px solid var(--line);
@@ -570,6 +575,37 @@
         color: var(--teal);
         border: 1px solid rgba(31, 109, 114, 0.08);
         font-weight: 700;
+      }
+
+      .trust-strip {
+        padding-top: 0;
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .trust-item {
+        background: var(--panel-solid);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .trust-item strong {
+        display: block;
+        margin-bottom: 6px;
+        font-family: var(--font-heading);
+        color: var(--deep);
+      }
+
+      .trust-item span {
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.94rem;
       }
 
       .price-grid {
@@ -754,6 +790,64 @@
       .footer-links a {
         color: var(--teal);
         font-weight: 700;
+      }
+
+      .reviews {
+        background: #eef5f3;
+      }
+
+      .review-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .review-btn {
+        width: 42px;
+        height: 42px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--panel-solid);
+        color: var(--teal);
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 800;
+        box-shadow: var(--shadow);
+      }
+
+      .review-carousel {
+        display: flex;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding: 4px 2px 14px;
+        scrollbar-width: thin;
+      }
+
+      .review-card {
+        flex: 0 0 min(390px, 88vw);
+        min-height: 230px;
+        scroll-snap-align: start;
+        background: var(--panel-solid);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .review-card p {
+        margin: 0;
+        color: var(--text);
+        line-height: 1.75;
+        font-size: 1.02rem;
+      }
+
+      .review-card .mini {
+        margin-top: 18px;
+        color: var(--muted);
       }
 
       .fineprint {
@@ -1025,13 +1119,15 @@
 
         .hero-badges,
         .service-grid,
+        .service-grid.compact,
         .split,
         .photo-band,
         .price-grid,
         .contact-grid,
         .legal-grid,
         .form-row,
-        .how {
+        .how,
+        .trust-grid {
           grid-template-columns: 1fr;
         }
 
@@ -1044,16 +1140,21 @@
           align-items: flex-start;
         }
 
+        .review-actions {
+          width: 100%;
+          justify-content: flex-start;
+        }
+
         .nav {
           justify-content: flex-start;
         }
 
-        .sticky-cta {
-          display: flex;
-        }
-
         .mobile-only {
           display: block;
+        }
+
+        .sticky-cta.mobile-only {
+          display: flex;
         }
       }
 
@@ -1173,7 +1274,7 @@
         </p>
         <div class="actions">
           <a class="btn btn-primary" href="#contact">Request a Quote</a>
-          <a class="btn btn-secondary" href="#services">View Services</a>
+          <a class="btn btn-secondary" href="https://wa.me/447912758192">WhatsApp</a>
         </div>
         <div class="hero-badges">
           <div class="badge-card">
@@ -1258,71 +1359,52 @@
           <div class="section-head">
             <h3>Services</h3>
             <p>
-              Simple, focused services for Airbnb hosts, villa owners, property managers, and
+              Four practical service groups for Airbnb hosts, villa owners, property managers, and
               overseas owners who want a dependable local contact.
             </p>
           </div>
-          <div class="grid service-grid">
+          <div class="grid service-grid compact">
             <article class="card">
               <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-              <h4>Airbnb Changeover Cleaning</h4>
-              <p>Clean after guest checkout, reset the home, and prepare it for the next arrival.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
-              <h4>Photo Report After Every Visit</h4>
-              <p>Receive clear photo updates so you can see the property from anywhere.</p>
+              <h4>Changeover Cleaning</h4>
+              <p>Checkout cleaning, bathrooms, kitchen surfaces, floors, bin removal, and guest-ready presentation before the next arrival.</p>
             </article>
             <article class="card">
               <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-              <h4>Laundry &amp; Bed Reset</h4>
-              <p>Fresh beds, towel prep, laundry help, and an organized guest-ready setup.</p>
+              <h4>Laundry &amp; Guest Reset</h4>
+              <p>Fresh beds, towel preparation, linen help, basic supply checks, and the small details guests notice first.</p>
+            </article>
+            <article class="card">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+              <h4>Property Checks &amp; Photo Reports</h4>
+              <p>Regular checks, clear photo updates, issue spotting, and practical owner communication after each visit.</p>
             </article>
             <article class="card">
               <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-              <h4>Minor Fixes by Quote</h4>
-              <p>Simple maintenance help, issue reporting, and coordination for small practical jobs.</p>
+              <h4>Owner Support Add-ons</h4>
+              <p>Key holding, restocking, patio tidy, fridge or oven extras, emergency visits, and minor fixes by quote.</p>
             </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m16.2 7.8-2 6.3-6.4 2.1 2-6.3z"/></svg></div>
-              <h4>Key Holding</h4>
-              <p>Safe key handling for owners who need access managed locally and reliably.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-              <h4>Property Checks</h4>
-              <p>Regular inspections to catch problems early and keep the home in good shape.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-              <h4>Emergency Visits</h4>
-              <p>Fast response when something urgent comes up and the property needs attention.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-              <h4>Guest Preparation</h4>
-              <p>Simple checkovers and staging so the property feels ready before arrival.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-              <h4>Restocking Essentials</h4>
-              <p>Toilet paper, soap, bin bags, and basic guest supplies checked and topped up.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21h16"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 10h6"/></svg></div>
-              <h4>Patio &amp; Terrace Tidy</h4>
-              <p>Sweep outdoor areas, reset furniture, and keep guest-facing spaces presentable.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M9 4v16"/><path d="M15 4v16"/><path d="M4 10h16"/><path d="M4 16h16"/></svg></div>
-              <h4>Fridge, Oven &amp; Interior Windows</h4>
-              <p>Useful add-ons for deeper resets when a normal changeover is not enough.</p>
-            </article>
-            <article class="card">
-              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-              <h4>Owner Support</h4>
-              <p>One point of contact for updates, coordination, and local help when needed.</p>
-            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section trust-strip" aria-label="Trust and contact details">
+        <div class="wrap trust-grid">
+          <div class="trust-item">
+            <strong>NIF published</strong>
+            <span>Business identity is shown clearly for owner confidence and ad transparency.</span>
+          </div>
+          <div class="trust-item">
+            <strong>WhatsApp or email</strong>
+            <span>Message directly on WhatsApp or send a structured quote request through the form.</span>
+          </div>
+          <div class="trust-item">
+            <strong>Photos after visits</strong>
+            <span>Visual updates help owners check presentation and spot small issues early.</span>
+          </div>
+          <div class="trust-item">
+            <strong>Clear quote first</strong>
+            <span>Guide prices are shown, with final work confirmed before anything starts.</span>
           </div>
         </div>
       </section>
@@ -1701,6 +1783,7 @@
               <p><strong>NIF:</strong> 309213754</p>
               <p><strong>Service area:</strong> Odemira, Vila Nova de Milfontes, Zambujeira do Mar, Odeceixe, Aljezur, Porto Covo, Cercal do Alentejo, and nearby areas by arrangement.</p>
               <p><strong>Email:</strong> <a href="mailto:edvardaspt@gmail.com">edvardaspt@gmail.com</a></p>
+              <p><strong>WhatsApp:</strong> <a href="https://wa.me/447912758192">+44 7912 758192</a></p>
               <p><strong>Quote requests:</strong> Use the form for property details, preferred dates, access notes, and selected services.</p>
               <p><strong>Hours:</strong> By appointment / flexible for changeovers</p>
               <p class="fineprint">
@@ -1743,6 +1826,39 @@
         </div>
       </section>
 
+      <section class="section reviews" id="owner-feedback">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <h3>Owner feedback</h3>
+              <p>Calm, practical support for owners who need the property ready without chasing every detail.</p>
+            </div>
+            <div class="review-actions" aria-label="Review carousel controls">
+              <button class="review-btn" type="button" onclick="scrollReviews(-1)" aria-label="Previous feedback">&larr;</button>
+              <button class="review-btn" type="button" onclick="scrollReviews(1)" aria-label="Next feedback">&rarr;</button>
+            </div>
+          </div>
+          <div class="review-carousel" id="review-track" tabindex="0" aria-label="Owner feedback carousel">
+            <article class="review-card">
+              <p>"The photo updates make it much easier to manage the house from away. I can see what was done and what needs attention."</p>
+              <div class="mini">Holiday-home owner</div>
+            </article>
+            <article class="review-card">
+              <p>"Good communication before and after the changeover. The quote was clear and the beds and bathrooms were properly reset."</p>
+              <div class="mini">Short-term rental host</div>
+            </article>
+            <article class="review-card">
+              <p>"It helps to have one local contact for cleaning, supplies, and small issues instead of arranging everything separately."</p>
+              <div class="mini">Overseas property owner</div>
+            </article>
+            <article class="review-card">
+              <p>"The property check caught small things early, which saved stress before the next guests arrived."</p>
+              <div class="mini">Villa owner</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <footer class="footer">
@@ -1755,14 +1871,15 @@
           <a href="legal.html#terms">Terms</a>
           <a href="legal.html#privacy">Privacy</a>
           <a href="legal.html#cookies">Cookies</a>
+          <a href="https://wa.me/447912758192">WhatsApp</a>
           <a href="#contact">Contact</a>
         </div>
       </div>
     </footer>
 
     <div class="sticky-cta mobile-only">
-      <a class="btn btn-primary" href="#contact">Contact</a>
-      <a class="btn btn-secondary" href="#contact">Quote</a>
+      <a class="btn btn-primary" href="#contact">Quote</a>
+      <a class="btn btn-secondary" href="https://wa.me/447912758192">WhatsApp</a>
     </div>
     <script>
       // Sticky topbar scroll behaviour
@@ -1916,7 +2033,16 @@
           }
           status.textContent = 'Quote request sent. We will reply soon.';
         }).catch(function () {
-          status.textContent = 'The request could not be sent automatically right now. Please copy the prepared message below and email it to edvardaspt@gmail.com.';
+          status.textContent = 'The request could not be sent automatically right now. Please copy the prepared message below and email it to edvardaspt@gmail.com or send it by WhatsApp to +44 7912 758192.';
+        });
+      }
+
+      function scrollReviews(direction) {
+        var track = document.getElementById('review-track');
+        if (!track) return;
+        track.scrollBy({
+          left: direction * Math.min(track.clientWidth, 430),
+          behavior: 'smooth'
         });
       }
 
