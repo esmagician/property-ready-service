@@ -1684,7 +1684,7 @@
           }
           status.textContent = 'Quote request sent. We will reply soon.';
         }).catch(function () {
-          status.textContent = 'Automatic sending is not ready yet. The prepared message is visible below and can be copied.';
+          status.textContent = 'Automatic sending is connected, but the destination email still needs Cloudflare verification. The prepared message is visible below and can be copied.';
         });
       }
 

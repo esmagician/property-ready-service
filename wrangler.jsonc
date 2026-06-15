@@ -1,0 +1,13 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "property-ready-service",
+  "pages_build_output_dir": ".",
+  "compatibility_date": "2026-06-15",
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_destination_addresses": ["edvardaspt@gmail.com"],
+      "remote": true
+    }
+  ]
+}

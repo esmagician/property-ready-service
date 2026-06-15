@@ -1,4 +1,5 @@
 const RECIPIENT_EMAIL = 'edvardaspt@gmail.com';
+const SENDER_EMAIL = 'quotes@property-ready.com';
 const SENDER_NAME = 'Property Ready Service';
 
 function jsonResponse(body, status = 200) {
@@ -12,12 +13,6 @@ function jsonResponse(body, status = 200) {
 
 function normalizeText(value) {
   return typeof value === 'string' ? value.trim() : '';
-}
-
-function getSenderAddress(request) {
-  const host = new URL(request.url).hostname;
-  const domain = host.startsWith('www.') ? host.slice(4) : host;
-  return `quotes@${domain}`;
 }
 
 function buildEmailBody(payload, request) {
@@ -62,7 +57,6 @@ export async function onRequestPost(context) {
     return jsonResponse({ ok: false, error: 'Email sending is not configured yet in this Pages project.' }, 500);
   }
 
-  const senderAddress = getSenderAddress(request);
   const body = buildEmailBody({
     name,
     contact,
@@ -78,7 +72,7 @@ export async function onRequestPost(context) {
   try {
     await env.EMAIL.send({
       to: RECIPIENT_EMAIL,
-      from: { email: senderAddress, name: SENDER_NAME },
+      from: { email: SENDER_EMAIL, name: SENDER_NAME },
       subject: `Quote request from ${name}`,
       text: body,
       html: body.replace(/\n/g, '<br>')
