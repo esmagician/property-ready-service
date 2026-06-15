@@ -1,7 +1,7 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "property-ready-service",
-  "pages_build_output_dir": ".",
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "property-ready-quote-email",
+  "main": "src/index.js",
   "compatibility_date": "2026-06-15",
   "send_email": [
     {

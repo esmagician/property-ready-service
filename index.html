@@ -1554,6 +1554,7 @@
 
       // Instant Quote Calculator
       var basePrice = 65;
+      var quoteEndpoint = 'https://property-ready-quote-email.esmagician.workers.dev/';
 
       function selectProp(btn) {
         document.querySelectorAll('#prop-type .calc-btn').forEach(function (b) {
@@ -1657,7 +1658,7 @@
         output.value = message;
         outputWrap.classList.add('is-visible');
         status.textContent = 'Sending your quote request...';
-        fetch('/api/quote', {
+        fetch(quoteEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
