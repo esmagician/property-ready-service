@@ -10,12 +10,12 @@
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#102225" />
-    <link rel="canonical" href="https://property-ready-service.pages.dev/legal" />
+    <link rel="canonical" href="https://property-ready-service.pages.dev/legal.html" />
     <link rel="icon" href="/assets/property-ready-service-logo-mark.png" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Legal, Privacy &amp; Terms | Property Ready Service" />
     <meta property="og:description" content="Business information, service terms, privacy policy, cookie policy, and contact details for Property Ready Service." />
-    <meta property="og:url" content="https://property-ready-service.pages.dev/legal" />
+    <meta property="og:url" content="https://property-ready-service.pages.dev/legal.html" />
     <meta property="og:image" content="https://property-ready-service.pages.dev/assets/property-ready-service-logo.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Legal, Privacy &amp; Terms | Property Ready Service" />
@@ -23,20 +23,23 @@
     <meta name="twitter:image" content="https://property-ready-service.pages.dev/assets/property-ready-service-logo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
       :root {
         --bg: #f4f8f7;
-        --panel: #ffffff;
+        --panel: rgba(255, 255, 255, 0.88);
+        --panel-solid: #ffffff;
         --text: #102225;
         --muted: #5d7176;
         --line: #dce7e5;
         --deep: #102225;
         --teal: #1f6d72;
         --teal-soft: #e6f4f2;
-        --shadow: 0 18px 45px rgba(16, 34, 37, 0.08);
+        --green: #6b8f7e;
+        --shadow: 0 22px 50px rgba(16, 34, 37, 0.08);
         --font-sans: 'Inter', -apple-system, sans-serif;
         --font-heading: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        --font-script: 'Caveat', 'Brush Script MT', cursive;
       }
 
       * {
@@ -51,7 +54,10 @@
         margin: 0;
         font-family: var(--font-sans);
         color: var(--text);
-        background: linear-gradient(180deg, #fbfcfc 0%, var(--bg) 100%);
+        background:
+          radial-gradient(circle at 12% 0%, rgba(31, 109, 114, 0.08), transparent 24%),
+          radial-gradient(circle at 92% 12%, rgba(107, 143, 126, 0.08), transparent 22%),
+          linear-gradient(180deg, #fbfcfc 0%, var(--bg) 100%);
       }
 
       a {
@@ -60,37 +66,96 @@
       }
 
       .wrap {
-        width: min(1040px, calc(100% - 32px));
+        width: min(1180px, calc(100% - 32px));
         margin: 0 auto;
       }
 
       .topbar {
-        background: var(--deep);
+        position: fixed;
+        inset: 0 0 auto;
+        z-index: 100;
+        padding: 10px 0;
+        background: rgba(16, 34, 37, 0.92);
         color: white;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 4px 24px rgba(0,0,0,0.18);
       }
 
       .topbar-inner {
-        min-height: 76px;
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
+        gap: 24px;
       }
 
       .brand {
-        font-family: var(--font-heading);
-        font-weight: 800;
-        font-size: 1.05rem;
+        display: flex;
+        align-items: center;
+        color: white;
+      }
+
+      .brand-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+        width: 140px;
+        height: 114px;
+        padding: 8px 10px 10px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.9);
+        box-shadow: 0 10px 25px rgba(16, 34, 37, 0.15);
+        flex: none;
+        transition: transform 0.2s ease;
+      }
+
+      .brand-logo:hover {
+        transform: scale(1.05);
+      }
+
+      .brand-logo img {
+        width: 100%;
+        height: 64px;
+        flex: 0 0 64px;
+        object-fit: contain;
+        object-position: center top;
+        display: block;
+      }
+
+      .brand-wordmark {
+        display: block;
+        font-family: var(--font-script);
+        font-size: 1.38rem;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0;
+        color: #174f54;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.88), 0 4px 14px rgba(16, 34, 37, 0.14);
+        text-align: center;
+        pointer-events: none;
+        white-space: nowrap;
+        width: 100%;
       }
 
       .nav {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
         align-items: center;
-        gap: 18px;
-        color: rgba(255, 255, 255, 0.86);
+        gap: 20px;
+      }
+
+      .nav a {
+        color: rgba(255, 255, 255, 0.9);
         font-size: 0.94rem;
-        font-weight: 600;
+        font-weight: 500;
+        transition: color 0.2s ease;
       }
 
       .nav a:hover {
@@ -98,21 +163,23 @@
       }
 
       .page-head {
-        padding: 76px 0 28px;
+        padding: 154px 0 58px;
+        background: linear-gradient(180deg, #102225 0%, #163235 100%);
+        color: white;
       }
 
       .page-head h1 {
         margin: 0;
-        max-width: 760px;
+        max-width: 820px;
         font-family: var(--font-heading);
-        font-size: clamp(2.25rem, 5vw, 4.6rem);
-        line-height: 1;
+        font-size: clamp(2.2rem, 5vw, 4.8rem);
+        line-height: 0.98;
       }
 
       .page-head p {
-        max-width: 760px;
+        max-width: 780px;
         margin: 18px 0 0;
-        color: var(--muted);
+        color: rgba(255, 255, 255, 0.82);
         font-size: 1.05rem;
         line-height: 1.7;
       }
@@ -125,11 +192,12 @@
       }
 
       .legal-card {
-        background: var(--panel);
+        background: var(--panel-solid);
         border: 1px solid var(--line);
         border-radius: 8px;
         padding: 24px;
         box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
       }
 
       .legal-card h2 {
@@ -143,6 +211,11 @@
         color: var(--muted);
         line-height: 1.65;
         font-size: 0.96rem;
+      }
+
+      .legal-card a {
+        color: var(--teal);
+        font-weight: 700;
       }
 
       .legal-card p {
@@ -169,40 +242,68 @@
       }
 
       .footer {
-        padding: 28px 0;
-        background: var(--deep);
-        color: white;
-      }
-
-      .footer .wrap {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
+        padding: 30px 0 46px;
+        text-align: center;
+        color: var(--muted);
       }
 
       .footer-links {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 14px;
-        color: rgba(255, 255, 255, 0.74);
-        font-size: 0.9rem;
+        margin-top: 14px;
+      }
+
+      .footer-links a {
+        color: var(--teal);
+        font-weight: 700;
+      }
+
+      .mini {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.45;
+        margin-top: 6px;
       }
 
       @media (max-width: 760px) {
-        .topbar-inner,
-        .footer .wrap {
-          align-items: flex-start;
+        .topbar-inner {
+          align-items: center;
           flex-direction: column;
+          gap: 12px;
+        }
+
+        .brand-logo {
+          width: 130px;
+          height: 102px;
+          padding: 6px 7px 8px;
+        }
+
+        .brand-logo img {
+          height: 58px;
+          flex-basis: 58px;
+        }
+
+        .brand-wordmark {
+          font-size: 1.18rem;
         }
 
         .nav {
+          justify-content: center;
           flex-wrap: wrap;
+          width: 100%;
+          gap: 8px 12px;
+          line-height: 1.2;
+          text-align: center;
+        }
+
+        .nav a {
+          font-size: 0.86rem;
         }
 
         .page-head {
-          padding-top: 44px;
+          padding-top: 196px;
         }
 
         .legal-grid {
@@ -213,13 +314,19 @@
   </head>
   <body>
     <header class="topbar">
-      <div class="wrap topbar-inner">
-        <a class="brand" href="index.html">Property Ready Service</a>
-        <nav class="nav" aria-label="Legal navigation">
-          <a href="index.html#services">Services</a>
-          <a href="index.html#pricing">Pricing</a>
-          <a href="index.html#contact">Contact</a>
+      <div class="topbar-inner">
+        <a class="brand" href="/" aria-label="Property Ready Service home">
+          <div class="brand-logo">
+            <img src="assets/property-ready-service-logo-mark.png" width="72" height="72" alt="Property Ready Service logo" />
+            <span class="brand-wordmark">Property Ready</span>
+          </div>
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="/#services">Services</a>
+          <a href="/#how">How it works</a>
+          <a href="/#areas">Areas</a>
           <a href="legal.html">Legal</a>
+          <a href="/#contact">Contact</a>
         </nav>
       </div>
     </header>
@@ -238,12 +345,14 @@
       <section class="wrap legal-grid" aria-label="Legal information">
         <article class="legal-card" id="business">
           <h2>Business Information</h2>
-          <p><strong>Business name:</strong> Property Ready Service</p>
+          <p><strong>Business name used for advertising:</strong> Property Ready Service</p>
           <p><strong>NIF:</strong> 309213754</p>
           <p><strong>Email:</strong> <a href="mailto:edvardaspt@gmail.com">edvardaspt@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+351935352998">+351 935 352 998</a></p>
           <p><strong>WhatsApp:</strong> <a href="https://wa.me/447912758192">+44 7912 758192</a></p>
           <p><strong>Services:</strong> property changeover cleaning, photo reports, laundry and bed reset support, restocking, key holding, property checks, emergency visits, deep cleaning, and minor fixes by separate quote.</p>
           <p><strong>Service area:</strong> Alentejo Coast and nearby areas listed on the website, subject to availability.</p>
+          <p><strong>Business identity note:</strong> The business name, NIF, contact details, invoices, quotes, ads, and public listings should match the real trading identity used to provide the service. If the legal or tax identity changes, this page should be updated before running ads.</p>
         </article>
 
         <article class="legal-card" id="terms">
@@ -265,7 +374,8 @@
           </p>
           <p>
             Personal data is not sold. It may be shared only with service providers or helpers when
-            needed to complete an agreed job, comply with legal duties, or protect legal rights.
+            needed to complete an agreed job, comply with legal duties, measure website enquiries
+            with consent where required, or protect legal rights.
           </p>
         </article>
 
@@ -276,6 +386,11 @@
             Google Ads conversion tracking, remarketing, or similar tools are added later, visitors
             should be given clear information and any required consent before non-essential cookies
             or tracking technologies are used.
+          </p>
+          <p>
+            Google Ads conversion tracking, analytics, remarketing tags, or other non-essential
+            marketing pixels should not be enabled until the cookie notice and consent setup match
+            the actual tools used on the site.
           </p>
         </article>
 
@@ -294,12 +409,17 @@
         <article class="legal-card" id="transparency">
           <h2>Transparency</h2>
           <p>
-            Business name, NIF, service area, email and WhatsApp contact, prices, and service limits are
+            Business name, NIF, service area, email, phone, and WhatsApp contact, prices, and service limits are
             published so customers can understand who they are contacting before requesting a quote.
           </p>
           <p>
             Any Google Ads, listings, or profiles should use the same business identity and contact
             details as this website.
+          </p>
+          <p>
+            Property Ready Service is an independent property care service. References to holiday
+            rentals, short-term rentals, villas, or booking platforms are descriptive only and do
+            not imply endorsement, partnership, or affiliation with any third-party platform.
           </p>
         </article>
 
@@ -313,13 +433,16 @@
 
     <footer class="footer">
       <div class="wrap">
-        <div><strong>Property Ready Service</strong> · NIF 309213754</div>
+        <div><strong>Property Ready Service</strong></div>
+        <div class="mini">Short-term rental cleaning, villa care, and property support across the Alentejo Coast.</div>
         <div class="footer-links">
-          <a href="index.html">Home</a>
+          <a href="legal.html#business">Business information</a>
           <a href="legal.html#terms">Terms</a>
           <a href="legal.html#privacy">Privacy</a>
           <a href="legal.html#cookies">Cookies</a>
+          <a href="tel:+351935352998">Call</a>
           <a href="https://wa.me/447912758192">WhatsApp</a>
+          <a href="/#contact">Contact</a>
         </div>
       </div>
     </footer>
